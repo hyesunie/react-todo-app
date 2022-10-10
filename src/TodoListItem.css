@@ -1,0 +1,35 @@
+.todo-list-item-wrapper {
+  background-color: white;
+  width: 85%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.3em;
+  padding: 0.6em;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.todo-list-item-wrapper input {
+  width: 6%;
+}
+
+.todo-list-item-wrapper div {
+  width: 80%;
+  text-align: left;
+  margin-left: 0.5em;
+}
+
+.todo-list-item-wrapper button {
+  border: none;
+  background-color: rgb(249, 249, 127);
+  border-radius: 10px;
+  padding: 0.1em 0.6em 0.1em 0.6em;
+  font-size: 1.3em;
+}
+
+.check {
+  text-decoration: line-through;
+  color: rgb(211, 211, 211);
+}

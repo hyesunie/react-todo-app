@@ -1,9 +1,30 @@
+body {
+  background-color: rgb(237, 229, 196);
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .App {
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
+  width: 60vh;
+  height: 90vh;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .App-header {
-  min-height: 20vh;
+  min-height: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

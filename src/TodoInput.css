@@ -1,0 +1,29 @@
+.todo-input-wrapper {
+  width: 90%;
+  height: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+
+  border-radius: 10px;
+}
+
+.todo-input-wrapper input {
+  margin-left: 0.5em;
+  width: 85%;
+  font-size: 1.3em;
+  border: none;
+}
+
+.todo-input-wrapper input:focus {
+  outline: none; /* Removes the border when the input is clicked */
+}
+
+.todo-input-wrapper button {
+  border: none;
+  background-color: rgb(249, 249, 127);
+  font-size: 1.3em;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-radius: 10px;
+}
