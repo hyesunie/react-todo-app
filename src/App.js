@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from "react";
+import "./App.css";
+import TodoInput from "./TodoInput";
+
+function reducer(todoList, action) {
+  switch (action.type) {
+    case "remove": {
+      const id = action.payload;
+      return todoList.filter((todoInfo) => todoInfo.id !== id);
+    }
+    case "add": {
+      const newTodoInfo = action.payload;
+      return [...todoList, newTodoInfo];
+    }
+    case "check": {
+      const id = action.payload;
+      return todoList.map((todoInfo) => {
+        if (todoInfo.id === id) {
+          todoInfo.check = !todoInfo.check;
+        }
+
+        return todoInfo;
+      });
+    }
+    default:
+      throw new Error("reducer action type이 잘못 됐습니다.");
+  }
+}
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>일정관리 앱</p>
       </header>
+      <TodoInput dispatch={dispatch} />
     </div>
   );
 }
