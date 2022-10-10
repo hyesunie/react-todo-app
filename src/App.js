@@ -15,12 +15,14 @@ function reducer(todoList, action) {
     }
     case "check": {
       const id = action.payload;
+
       return todoList.map((todoInfo) => {
-        if (todoInfo.id === id) {
-          todoInfo.check = !todoInfo.check;
+        const newTodoInfo = { ...todoInfo };
+        if (todoInfo.id === Number(id)) {
+          newTodoInfo.check = !todoInfo.check;
         }
 
-        return todoInfo;
+        return newTodoInfo;
       });
     }
     default:
@@ -34,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>일정관리 앱</p>
+        <p>TODO</p>
       </header>
       <TodoInput dispatch={dispatch} />
       <TodoList dispatch={dispatch} list={state} />

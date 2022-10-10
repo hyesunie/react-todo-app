@@ -1,3 +1,4 @@
+import "./TodoList.css";
 import React, { useCallback } from "react";
 import TodoListItem from "./TodoListItem";
 
@@ -15,16 +16,18 @@ function TodoList(props) {
   }, []);
 
   return (
-    <ul>
-      {list.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          onClickDelete={onClickDelete}
-          onClickCheck={onClickCheck}
-          todoInfo={todo}
-        />
-      ))}
-    </ul>
+    <section className="todo-list-wrapper">
+      <ul>
+        {list.map((todo) => (
+          <TodoListItem
+            key={todo.id}
+            onClickDelete={onClickDelete}
+            onClickCheck={onClickCheck}
+            todoInfo={todo}
+          />
+        ))}
+      </ul>
+    </section>
   );
 }
 
