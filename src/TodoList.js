@@ -14,7 +14,18 @@ function TodoList(props) {
     dispatch({ type: "check", payload: id });
   }, []);
 
-  return <ul></ul>;
+  return (
+    <ul>
+      {list.map((todo) => (
+        <TodoListItem
+          key={todo.id}
+          onClickDelete={onClickDelete}
+          onClickCheck={onClickCheck}
+          todoInfo={todo}
+        />
+      ))}
+    </ul>
+  );
 }
 
 export default TodoList;
