@@ -1,12 +1,13 @@
 import { useReducer } from "react";
 import "./App.css";
 import TodoInput from "./TodoInput";
+import TodoList from "./TodoList";
 
 function reducer(todoList, action) {
   switch (action.type) {
     case "remove": {
       const id = action.payload;
-      return todoList.filter((todoInfo) => todoInfo.id !== id);
+      return todoList.filter((todoInfo) => todoInfo.id !== Number(id));
     }
     case "add": {
       const newTodoInfo = action.payload;
@@ -36,6 +37,7 @@ function App() {
         <p>일정관리 앱</p>
       </header>
       <TodoInput dispatch={dispatch} />
+      <TodoList dispatch={dispatch} list={state} />
     </div>
   );
 }
