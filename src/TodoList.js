@@ -1,19 +1,11 @@
 import "./TodoList.css";
-import React, { useCallback } from "react";
+import React from "react";
 import TodoListItem from "./TodoListItem";
 
 function TodoList(props) {
-  const { list, dispatch } = props;
+  const { list, onCheck, onRemove } = props;
 
-  const onClickDelete = useCallback((e) => {
-    const id = e.target.id;
-    dispatch({ type: "remove", payload: id });
-  }, []);
-
-  const onClickCheck = useCallback((e) => {
-    const id = e.target.id;
-    dispatch({ type: "check", payload: id });
-  }, []);
+  console.log(list);
 
   return (
     <section className="todo-list-wrapper">
@@ -21,8 +13,8 @@ function TodoList(props) {
         {list.map((todo) => (
           <TodoListItem
             key={todo.id}
-            onClickDelete={onClickDelete}
-            onClickCheck={onClickCheck}
+            onCheck={onCheck}
+            onRemove={onRemove}
             todoInfo={todo}
           />
         ))}
@@ -31,4 +23,4 @@ function TodoList(props) {
   );
 }
 
-export default TodoList;
+export default React.memo(TodoList);

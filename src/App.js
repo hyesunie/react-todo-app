@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import "./App.css";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
@@ -17,12 +17,13 @@ function reducer(todoList, action) {
       const id = action.payload;
 
       return todoList.map((todoInfo) => {
-        const newTodoInfo = { ...todoInfo };
-        if (todoInfo.id === Number(id)) {
-          newTodoInfo.check = !todoInfo.check;
+        if (todoInfo.id === id) {
+          console.log(todoInfo);
+
+          return { ...todoInfo, check: !todoInfo.check };
         }
 
-        return newTodoInfo;
+        return todoInfo;
       });
     }
     default:
@@ -30,8 +31,29 @@ function reducer(todoList, action) {
   }
 }
 
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i <= 10; i++) {
+    array.push({
+      id: i,
+      todo: `할 일 ${i}`,
+      check: false,
+    });
+  }
+
+  return array;
+}
+
 function App() {
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, undefined, createBulkTodos);
+
+  const onCheck = useCallback((id) => {
+    dispatch({ type: "check", payload: id });
+  }, []);
+
+  const onRemove = useCallback((id) => {
+    dispatch({ type: "remove", payload: id });
+  }, []);
 
   return (
     <div className="App">
@@ -39,7 +61,7 @@ function App() {
         <p>TODO</p>
       </header>
       <TodoInput dispatch={dispatch} />
-      <TodoList dispatch={dispatch} list={state} />
+      <TodoList onCheck={onCheck} onRemove={onRemove} list={state} />
     </div>
   );
 }
